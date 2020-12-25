@@ -27,20 +27,23 @@ public class HomeControler extends HttpServlet {
         String restingPlace = req.getParameter("restingPlace");
         String vehicle = req.getParameter("vehicle");
         String day = req.getParameter("day");
+        String tyleTravel = req.getParameter("tyleTravel");
         String kq = "";
 
-        System.out.println(numPerson + domain + day + restingPlace + vehicle);
+        System.out.println(numPerson + domain + day + restingPlace + vehicle + tyleTravel);
 
-        runService.saveFileArff(numPerson,domain,restingPlace,vehicle,day);
+
+
+        runService.saveFileArff(numPerson,domain,restingPlace,vehicle,day,tyleTravel);
         try {
             kq = runService.runAlgorithm();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        req.setAttribute("ketqua", runService.converterData(kq,numPerson,domain,restingPlace,vehicle,day));
+        req.setAttribute("ketqua", runService.converterData(kq,numPerson,domain,restingPlace,vehicle,day,tyleTravel));
 
-        System.out.println(runService.converterData(kq,numPerson,domain,restingPlace,vehicle,day));
+        System.out.println(runService.converterData(kq,numPerson,domain,restingPlace,vehicle,day,tyleTravel));
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/home.jsp");
         requestDispatcher.forward(req, resp);

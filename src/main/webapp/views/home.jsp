@@ -67,7 +67,7 @@
     <div class="bg-info text-white border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Trang chủ</div>
         <div class="list-group list-group-flush">
-            <a href="./web-home" class="list-group-item list-group-item-action bg-info text-white">Dự đoán địa điểm du
+            <a href="./web-home" class="list-group-item list-group-item-action bg-info text-white">Gợi ý địa điểm du
                 lịch</a>
             <a href="./web-member" class="list-group-item list-group-item-action bg-info text-white">Thành viên</a>
         </div>
@@ -91,6 +91,7 @@
                             <div class="card-body">
                                 <p>Số người tham gia</p>
                                 <select name="NumberOfPeople" id="numPerson" style="width:100%">
+                                    <option value="0"></option>
                                     <option value="alone">Một mình</option>
                                     <option value="groups2pTo4p">Nhóm 2-4 người</option>
                                     <option value="groups5pTo8p">Nhóm 5-8 người</option>
@@ -98,12 +99,14 @@
                                 </select>
                                 <p>Địa điểm ở miền nào?</p>
                                 <select name="domain" id="domain" style="width:100%">
+                                    <option value="0"></option>
                                     <option value="Northern">Miền Bắc</option>
                                     <option value="Central">Miền Trung</option>
                                     <option value="South">Miền Nam</option>
                                 </select>
                                 <p>Nơi nghỉ ngơi</p>
                                 <select name="restingPlace" id="location" style="width:100%">
+                                    <option value="0"></option>
                                     <option value="hotel">Khách sạn</option>
                                     <option value="Homestay">Homestay</option>
                                     <option value="home">Nhà riêng</option>
@@ -111,13 +114,23 @@
                                 </select>
                                 <p>Phương tiện di chuyển</p>
                                 <select name="vehicle" id="trans" style="width:100%">
+                                    <option value="0"></option>
                                     <option value="motorcycle">Xe máy</option>
                                     <option value="coach">Xe khách</option>
                                     <option value="planes">Máy bay</option>
 
                                 </select>
+                                <p>Loại hình đi du lịch</p>
+                                <select name="tyleTravel" id="tyleTravel" style="width:100%">
+                                    <option value="0"></option>
+                                    <option value="Bien">Đi biển</option>
+                                    <option value="Nui">Đi núi</option>
+                                    <option value="DanhLam">Đi danh lam thắng cảnh</option>
+
+                                </select>
                                 <p>Số ngày đi du lịch</p>
                                 <select name="day" id="day" style="width:100%">
+                                    <option value="0"></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

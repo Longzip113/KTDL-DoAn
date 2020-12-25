@@ -1,0 +1,10 @@
+@relation datatestset
+@attribute Domain {Northern,South,Central}
+@attribute NumberOfDays real
+@attribute NumberOfPeople {groups2pTo4p,groupsofover20P,groups5pTo8p,alone}
+@attribute vehicle {motorcycle,coach,planes}
+@attribute restingPlace {Homestay,home,hotel,No}
+@attribute tyleTravel {Nui,Bien,DanhLam}
+@attribute locationGo  {VinhHaLong,MocChau,Sapa,DaoNgocPhuQuoc,NhaTrang,ThacDaHanDongNai,DaoThanhAnCanTho,PhuYen,HoiAn,DaNang,Hue,PhongNhaKeBang,NuiCamAnGiang,BaiChay,SamSon,Nuilangbiang,ChoNoiCaiRang,ThacBanGioc}
+@data
+Northern	6	groups2pTo4p	coach	home	Nui	?

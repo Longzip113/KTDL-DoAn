@@ -10,17 +10,18 @@ import java.io.PrintWriter;
 
 public class RunService {
 
-    public void saveFileArff(String numPerson, String domain, String restingPlace, String vehicle, String day) throws FileNotFoundException {
-        PrintWriter pwTrain = new PrintWriter(new File("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL/Data/train.arff"));
+    public void saveFileArff(String numPerson, String domain, String restingPlace, String vehicle, String day, String tyleTravel) throws FileNotFoundException {
+        PrintWriter pwTrain = new PrintWriter(new File("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL(Ver1.2)/KTDL/Data/train.arff"));
         pwTrain.println("@relation datatestset");
         pwTrain.println("@attribute Domain {Northern,South,Central}");
         pwTrain.println("@attribute NumberOfDays real");
         pwTrain.println("@attribute NumberOfPeople {groups2pTo4p,groupsofover20P,groups5pTo8p,alone}");
         pwTrain.println("@attribute vehicle {motorcycle,coach,planes}");
         pwTrain.println("@attribute restingPlace {Homestay,home,hotel,No}");
-        pwTrain.println("@attribute locationGo {VinhHaLong,MocChau,Sapa,TamCocBichDong,HaGiang,QuanDaoBaLua,DaoNgocPhuQuoc,NhaTrang,ThacDaHanDongNai,DaoThanhAnCanTho,PhuYen,HoiAn,DaNang,Hue,PhongNhaKeBang}");
+        pwTrain.println("@attribute tyleTravel {Nui,Bien,DanhLam}");
+        pwTrain.println("@attribute locationGo  {VinhHaLong,MocChau,Sapa,DaoNgocPhuQuoc,NhaTrang,ThacDaHanDongNai,DaoThanhAnCanTho,PhuYen,HoiAn,DaNang,Hue,PhongNhaKeBang,NuiCamAnGiang,BaiChay,SamSon,Nuilangbiang,ChoNoiCaiRang,ThacBanGioc}");
         pwTrain.println("@data");
-        pwTrain.println(domain+"\t"+day+"\t"+numPerson+"\t"+vehicle+"\t"+restingPlace+"\t?");
+        pwTrain.println(domain+"\t"+day+"\t"+numPerson+"\t"+vehicle+"\t"+restingPlace+"\t"+tyleTravel+"\t?");
         pwTrain.flush();
         pwTrain.close();
     }
@@ -40,22 +41,22 @@ public class RunService {
 
 //		home.saveFileCSV("/Users/ftwbeatn.t.long/Desktop/dataCSV.csv");
 
-//		MydecisionTreeModel model = new MydecisionTreeModel("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL/Data/datatestset.arff","-C 0.25 -M 2",null);
+//		MydecisionTree model = new MydecisionTree("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL(Ver1.2)/KTDL/Data/datatestset.arff","-C 0.25 -M 2",null);
         MydecisionTree model = new MydecisionTree();
 
 //		model.buildDecisionTree();
 //		model.evaluateDecisiontree();
 //		System.out.println(model);
-//
-//		model.saveModel("/Users/ftwbeatn.t.long/Desktop/data Test/decisionTree.model", model.tree);
-        MyWeka home = new MyWeka("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL/Data/train.arff");
 
-        model.tree =  (J48)model.loadModel("/Users/ftwbeatn.t.long/Desktop/data Test/decisionTree.model");
+//		model.saveModel("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL(Ver1.2)/KTDL/Data/decisionTree.model", model.tree);
+        MyWeka home = new MyWeka("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL(Ver1.2)/KTDL/Data/train.arff");
+
+        model.tree =  (J48)model.loadModel("/Users/ftwbeatn.t.long/Desktop/DoAn - KTDL(Ver1.2)/KTDL/Data/decisionTree2.model");
 
         return model.predictClassLable(home.dataSet);
     }
 
-    public String converterData(String data, String numPerson, String domain, String restingPlace, String vehicle, String day){
+    public String converterData(String data, String numPerson, String domain, String restingPlace, String vehicle, String day, String tyleTravel){
         String dataConver = "";
         String NumberOfPeople = "";
         switch(numPerson) {
@@ -120,12 +121,12 @@ public class RunService {
             dataConver = "Mộc châu.";
         } else if (data.equals("Sapa")) {
             dataConver = "Sapa.";
-        } else if (data.equals("TamCocBichDong")) {
-            dataConver = "Tam Cốc Bình Động.";
-        } else if (data.equals("HaGiang")) {
-            dataConver = "Hà Giang.";
-        } else if (data.equals("QuanDaoBaLua")) {
-            dataConver = "Quần Đao Ba lua.";
+        } else if (data.equals("SamSon")) {
+            dataConver = "Biển Sầm Sơn - Thanh Hoá.";
+        } else if (data.equals("BaiChay")) {
+            dataConver = "Bãi cháy - Quảng Ninh.";
+        } else if (data.equals("NuiCamAnGiang")) {
+            dataConver = "Nuí cấm An Giang.";
         } else if (data.equals("DaoNgocPhuQuoc")) {
             dataConver = "Đảo Ngọc Phú Quốc.";
         } else if (data.equals("NhaTrang")) {
@@ -144,10 +145,29 @@ public class RunService {
             dataConver = "Huế.";
         } else if (data.equals("PhongNhaKeBang")) {
             dataConver = "Phong Nha Kẻ Bàng.";
+        } else if (data.equals("Nuilangbiang")) {
+            dataConver = "Núi langbiang - Đà lạt.";
+        } else if (data.equals("ChoNoiCaiRang")) {
+            dataConver = "Chợ nổi cái răng - Cần Thơ.";
+        } else if (data.equals("ThacBanGioc")) {
+            dataConver = "Thác bản Giốc - Cao bằng.";
         }
+
+        String tyleTravelStr = "";
+        switch(tyleTravel) {
+            case "Bien":
+                tyleTravelStr = "Đi biển";
+                break;
+            case "Nui":
+                tyleTravelStr = "Đi núi";
+                break;
+            default:
+                tyleTravelStr = "Danh lam thắng cảnh";
+        }
+
         String result = "Với những thông tin bạn đã cung cấp cho chúng tôi: <br> Số người tham gia:"
                 + NumberOfPeople + "<br>Địa điểm ở miền: " + domainStr + "<br>Nơi nghỉ ngơi: " + restingPlaceStr
-                + "<br>Phương tiện di chuyển: " + vehicleStr + "<br>Số ngày đi du lịch: " + day
+                + "<br>Phương tiện di chuyển: " + vehicleStr + "<br>Số ngày đi du lịch: " + day + "<br>Loại hình du lịch: " + tyleTravelStr
                 + "<br>Với những lựa chọn như vậy chúng tôi gợi ý cho bạn đi: <p style=\"color: red\">" + dataConver
                 + "</p><br>==> (CHỈ MANG TÍNH CHẤT THAM KHẢO :^:)";
         return result;

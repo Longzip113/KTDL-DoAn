@@ -246,7 +246,7 @@
     <div class="bg-info text-white border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Trang chủ</div>
         <div class="list-group list-group-flush">
-            <a href="./web-home" class="list-group-item list-group-item-action bg-info text-white">Dự đoán địa
+            <a href="./web-home" class="list-group-item list-group-item-action bg-info text-white">Gợi ý địa
                 điểm du lịch</a>
             <a href="./web-member" class="list-group-item list-group-item-action bg-info text-white">Thành viên</a>
         </div>
